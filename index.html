@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraktale</title>
+    <link rel="stylesheet" href="MyStyle.css">
+
+</head>
+<body>
+    <h1 class="tytul">Fraktale</h1>
+    <p class="opis">opis do zmienienia czekamy na @adam</p>
+    <strong>Wielkość:</strong>
+    <br>
+    <button class="frak1Btn" onclick="changeIframe('fraktale/fraktal1.html')">Fractal 1</button>
+    <button class="frak2Btn" onclick="changeIframe('fraktale/fraktal2.html')">Fractal 2</button>
+    <button class="frak3tn" onclick="changeIframe('fraktale/fraktal3.html')">Fractal 3</button>
+    <br><br>
+    <iframe id="myIframe" class="ramka" src="fraktale/fraktal1.html" width="600" height="400"></iframe>
+    <script>
+        function changeIframe(url) {
+            document.getElementById("myIframe").src = url;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MyStyle.css">
+
+</head>
+<body>
+    <div>
+        <canvas id="canvas"></canvas>
+    </div>
+    
+    <div id="controls">
+        <label id="rangeLabel" for="range">7</label>
+        <input onchange="refreshRange()" type="range" min="1" max="12" value="7" class="slider" id="range">
+        <br/>
+        <button class="animBtn" onclick="animation()">animate</button>
+    </div>
+
+    <script>
+        function fractalDraw(repeats, scale) {
+            let r = 'r';
+            let l = 'l';
+            let cycle = 1;
+
+            let old = r;
+            let newStr = old;
+
+            while (cycle < repeats) {
+                newStr = old + r;
+                old = old.split('').reverse().join('');
+                for (let char = 0; char < old.length; char++) {
+                    old = old.substring(0, char) + (old[char] === r ? l : r) + old.substring(char + 1);
+                }
+                newStr += old;
+                old = newStr;
+                cycle++;
+            }
+            
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let length = 7.5;
+            let angle = 90;
+            ctx.scale(scale, scale);
+            ctx.strokeStyle = "white";
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2 / scale, canvas.height / 2 / scale);
+            ctx.translate(canvas.width / 2 / scale, canvas.height / 2 / scale);
+
+            for (let char of newStr) {
+                if (char === r) {
+                    ctx.rotate((Math.PI / 180) * angle);
+                } else if (char === l) {
+                    ctx.rotate((Math.PI / 180) * -angle);
+                }
+                ctx.lineTo(0, length);
+                ctx.translate(0, length);
+            }
+            ctx.stroke();
+        }
+
+        function refreshRange() {
+            const range = document.getElementById("range");
+            document.getElementById("rangeLabel").innerText = range.value;
+            fractalDraw(range.value, 0.75);
+        }
+
+        function animation() {
+            let i = 1;
+            function step() {
+                if (i <= 12) {
+                    document.getElementById("rangeLabel").innerText = i;
+                    document.getElementById("range").value = i;
+                    fractalDraw(i, 0.75);
+                    i++;
+                    setTimeout(step, 250);
+                }
+            }
+            step();
+        }
+
+        refreshRange();
+    </script>
+</body>
+</html>
