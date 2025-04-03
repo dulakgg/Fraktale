@@ -1,32 +1,165 @@
-/* fraktal marka */
-canvas {
+/* General styles */
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 100vh;
 
+    /* Smooth Gradient Background */
+    background: linear-gradient(45deg, #0a0a0a, #0a0a0a, #313131, #313131);
+    background-size: 400% 100%; /* Quadruple width for smoothness */
+    animation: gradient 15s linear infinite;
 }
-/* przycisk animuj marka xd */
-.animBtn {
-    
-}
-/* slider marka XD */
-.slider {
 
-}
-/* przycisk fraktal 1 */
-.frak1Btn {
-    
-}
-/* przycisk fraktal 2 */
-.frak2Btn {
-    
-}
-/* przycisk fraktal 3 */
-.frak3Btn {
-    
-}
-/* tytul po prostu  */
+/* Title styles */
 .tytul {
+    width: 300px;
+    font-size: 4rem;
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px #4f0a55;
+    border: 4px solid #4f0a55;
+}
+
+/* Description text */
+.opis {
+    color: #ffffff;
+    background-color: #000000;
+    border: 4px solid #4f0a55;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    font-style: italic;
+    box-shadow: 0 4px 15px #4f0a55;
+    width: 75%;
+}
+
+#opis-detail {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+/* Buttons container */
+body > br {
+    display: none;
+}
+
+/* Fractal buttons */
+.frak1Btn,
+.frak2Btn,
+.frak3Btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+}
+
+.frak1Btn {
+    border: 4px solid #4f0a55;
+    box-shadow: 0 4px 15px #4f0a55;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.frak2Btn {
+    border: 4px solid #4f0a55;
+    box-shadow: 0 4px 15px #4f0a55;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.frak3Btn {
+    border: 4px solid #4f0a55;
+    box-shadow: 0 4px 15px #4f0a55;
+    background-color: #000000;
+    color: #ffffff;
 
 }
-/* to coś szare w któerym jest fraktal */
-.ramka {
 
+/* Button hover effects */
+.frak1Btn:hover,
+.frak2Btn:hover,
+.frak3Btn:hover {
+    transform: translateY(-2px);
+}
+
+.frak1Btn:active,
+.frak2Btn:active,
+.frak3Btn:active {
+    transform: translateY(0);
+}
+
+/* Frame container */
+.sordek_ciezkosci_matki_ziemi {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* Iframe styles */
+.ramka {
+    width: 75%;
+    height: 800px;
+    border: 4px solid #4f0a55;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px #4f0a55;
+    background-color: #000000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 850px) {
+    .ramka {
+        width: 95%;
+        height: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+    .tytul {
+        font-size: 2rem;
+    }
+
+    .frak1Btn,
+    .frak2Btn,
+    .frak3Btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .ramka {
+        height: 400px;
+        width: 75%;
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@property --gradient-pos {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 0%;
 }

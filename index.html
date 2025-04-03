@@ -1,26 +1,66 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Fraktale</title>
-    <link rel="stylesheet" href="MyStyle.css">
-
+    <link rel="stylesheet" href="MyStyle.css"/>
 </head>
+<script>
+    function changeTitle(text) {
+        const title = document.getElementById("opis-title");
+        title.textContent = text;
+    }
+
+    function changeDetail(text) {
+        const detail = document.getElementById("opis-detail");
+        detail.textContent = text;
+    }
+
+    function fraktal1() {
+        changeIframe("fraktale/fraktal1.html");
+        changeTitle("Smok Heighwaya");
+        changeDetail(
+            "Fraktal odnaleziony przez Johna Heighwaya oraz Bruce’a Banksa i Williama Hartera w latach 60. XX wieku. Fraktal ten można stworzyć za pomocą wzoru : z(n+1) = (1 + i) / 2 * z(n), dla pierwszej połowy z(n + 1) = (1 - i) / 2 * z(n) + (1 + i) / 2, dla drugiej połowy"
+        );
+    }
+
+    function fraktal2() {
+        changeIframe("fraktale/fraktal2.html");
+        changeTitle("Krzywa Kocha");
+        changeDetail(
+            "Opisana w 1904 roku przez szwedzkiego matematyka Nielsa Fabiana Helgavon Kocha.Aby stworzyć fraktal zaczyna się od prostej linii, dzieli się wszystkie odcinki na 3 części i środkowy zastępuje ząbkiem o ramieniu długości 1 / 3 odcinka.Krok jest powtarzany w nieskończoność."
+        );
+    }
+
+    function fraktal3() {
+        changeIframe("fraktale/fraktal3.html");
+        changeTitle("Zbiór Mandelbrota");
+        changeDetail(
+            "Został odnaleziony przez Benoît B. Mandelbrota, był on francusko i amerykańskim matematykiem, który zdefiniował samo słowo fraktal, dlatego znany jest jako ojciec geometrii fraktalnej. Zbiór Mandelbrota jest jednym z najbardziej znanych i popularnych fraktali, można go przedstawić za pomocą funkcji : z(n+1) = z(n)^2 + c "
+        )
+    }
+</script>
 <body>
-    <h1 class="tytul">Fraktale</h1>
-    <p class="opis">opis do zmienienia czekamy na @adam</p>
-    <strong>Wielkość:</strong>
-    <br>
-    <button class="frak1Btn" onclick="changeIframe('fraktale/fraktal1.html')">Fractal 1</button>
-    <button class="frak2Btn" onclick="changeIframe('fraktale/fraktal2.html')">Fractal 2</button>
-    <button class="frak3tn" onclick="changeIframe('fraktale/fraktal3.html')">Fractal 3</button>
-    <br><br>
-    <iframe id="myIframe" class="ramka" src="fraktale/fraktal1.html" width="600" height="400"></iframe>
-    <script>
-        function changeIframe(url) {
-            document.getElementById("myIframe").src = url;
-        }
-    </script>
+<h1 class="tytul">Fraktale</h1>
+<div class="buttons-container">
+    <button class="frak1Btn" onclick="fraktal1()">Smok Heighwaya</button>
+    <button class="frak2Btn" onclick="fraktal2()">Krzywa Kocha</button>
+    <button class="frak3Btn" onclick="fraktal3()">Zbiór Mandelbrota</button>
+</div>
+<div class="sordek_ciezkosci_matki_ziemi">
+    <iframe id="myIframe" class="ramka" src="fraktale/fraktal1.html"></iframe>
+</div>
+<div class="opis">
+    <h2 id="opis-title"></h2>
+    <h3 id="opis-detail"></h3>
+</div>
+<script>
+    fraktal1();
+
+    function changeIframe(url) {
+        document.getElementById("myIframe").src = url;
+    }
+</script>
 </body>
 </html>
