@@ -1,12 +1,5 @@
-/* suwak */
-#range {
-
-}
-
 canvas {
-    /* bez tego się rozwala */
     position: fixed;
-    /* podwaja canvas */
     top: -50%;
     left: -50%;
     width: 200%;
@@ -24,11 +17,10 @@ canvas {
     z-index: 10;
     background-color: rgb(28, 28, 28);
     color: white;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 20px;
+    border-radius: 40px;
 }
 
-/* zmiana kolorów przycisku animate */
 #controls button {
     background-color: rgba(63, 63, 63, 0.3);
     color: white;

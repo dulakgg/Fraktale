@@ -34,10 +34,10 @@
     }
 
     function fraktal3() {
-        changeIframe("https://www.youtube.com/embed/vRleTC8nV54?si=HP-rk2GpsFxWpTN4autoplay=1&mute=1");
+        changeIframe("https://www.youtube.com/embed/GsQD2dhHoaU?si=OC-MdFlxQuLm6L8kautoplay=1&mute=1&loop=1");
         changeTitle("Zbiór Mandelbrota");
         changeDetail(
-            "Został odnaleziony przez Benoît B. Mandelbrota, był on francusko i amerykańskim matematykiem, który zdefiniował samo słowo fraktal, dlatego znany jest jako ojciec geometrii fraktalnej. Zbiór Mandelbrota jest jednym z najbardziej znanych i popularnych fraktali, można go przedstawić za pomocą funkcji : <br> z(n+1) = z(n)^2 + c "
+            "<a href='https://dulakgg.itch.io/zbior-mandelbroda'>Link do pobrania programu generującego zbiór Mandelbrota</a><br>Został odnaleziony przez Benoît B. Mandelbrota, był on francusko i amerykańskim matematykiem, który zdefiniował samo słowo fraktal, dlatego znany jest jako ojciec geometrii fraktalnej. Zbiór Mandelbrota jest jednym z najbardziej znanych i popularnych fraktali, można go przedstawić za pomocą funkcji : <br> z(n+1) = z(n)^2 + c "
         )
     }
 </script>
@@ -48,12 +48,16 @@
     <button class="frak2Btn" onclick="fraktal2()">Krzywa Kocha</button>
     <button class="frak3Btn" onclick="fraktal3()">Zbiór Mandelbrota</button>
 </div>
-<div class="sordek_ciezkosci_matki_ziemi">
+<div class="ajfrejm">
     <iframe id="myIframe" class="ramka" src="fraktale/fraktal1.html"></iframe>
 </div>
 <div class="opis">
     <h2 id="opis-title"></h2>
     <h3 id="opis-detail"></h3>
+    <h3 id="opis-extra">
+
+
+    </h3>
 </div>
 <script>
     fraktal1();

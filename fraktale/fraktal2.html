@@ -64,21 +64,30 @@
         ctx.stroke();
     }
 
+    var animating = false;
+
     function animation() {
         let range = document.getElementById("range");
         let i = 1;
+        if (animating) {
+            return;
+        }
 
         function step() {
-            if (i <= 8) {
+            if (i <= 15) {
                 const rangeLabel = document.getElementById("rangeLabel");
-                rangeLabel.innerText = i.toString();
+                rangeLabel.innerText = i;
                 range.value = i;
-                fractalDraw(i, 5);
+                fractalDraw(i, 0.25);
                 i++;
                 setTimeout(step, 250);
             } // powinno wychodzić jakoś?
+            else {
+                animating = false;
+            }
         }
 
+        animating = true;
         step(); // samo siebie powtarza
     }
 </script>
