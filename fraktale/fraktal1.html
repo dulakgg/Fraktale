@@ -3,57 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Fractals</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css"/>
 </head>
-<style>
-    html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    canvas {
-        position: fixed;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        scale: 0.5;
-        z-index: -1; /* Send canvas behind other elements */
-    }
-
-    #controls {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.7);
-        padding: 10px;
-        border-radius: 8px;
-    }
-
-</style>
 <script>
     function fractalDraw(repeats, scale) {
-        // const slider = document.getElementById("range")
-        // let repeats = slider.value
+        // skala dla różnej ilości powtórzeń
         if (repeats < 5) {
             scale = 3;
         } else if (repeats < 10) {
             scale = 2;
+        } else if (repeats < 12) {
+            scale = 1
         }
+        // stałe
         let r = 'r';
         let l = 'l';
-        let cycle = 1
+        let length = 7.5;
+        let angle = 90;
 
+        let cycle = 1
         let old = r;
         let newStr = old;
 
@@ -73,21 +41,25 @@
             old = newStr;
             cycle++;
         }
+
+        // canvas
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         ctx.setTransform(1, 0, 0, 1, 0, 0)
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        let length = 7.5;
-        let angle = 90;
+
+        // ustawienie ctx
         ctx.scale(scale, scale);
         ctx.strokeStyle = "white";
         ctx.fillStyle = "black";
         ctx.rotate(0, 0);
         ctx.translate(canvas.width / 2 / scale, canvas.height / 2 / scale);
         ctx.fillRect(-canvas.width / 2 / scale, -canvas.height / 2 / scale, canvas.width / scale, canvas.height / scale);
+
+        // początek rysowania
         ctx.beginPath();
         ctx.moveTo(0, 0);
-
+        // cokolwiek to jest, mam nadzieję, że dobre
         for (let char of newStr) {
             if (char === r) {
                 ctx.rotate((Math.PI / 180) * angle);
@@ -105,20 +77,22 @@
 
     function animation() {
         let range = document.getElementById("range");
-        let i = 1;  // Start from 1
+        let i = 1;
+
         function step() {
-            if (i <= 15) {  // Ensure it stops at max value
+            if (i <= 15) {
                 const rangeLabel = document.getElementById("rangeLabel");
                 rangeLabel.innerText = i;
                 range.value = i;
                 fractalDraw(i, 0.25);
                 i++;
-                setTimeout(step, 250);  // Delay for smooth animation
-            }
+                setTimeout(step, 250);
+            } // powinno wychodzić jakoś?
         }
 
-        step();
+        step(); // samo siebie powtarza
     }
+
 </script>
 <body>
 <script>
@@ -126,7 +100,7 @@
         const range = document.getElementById("range");
         const rangeLabel = document.getElementById("rangeLabel");
         rangeLabel.innerText = range.value;
-        fractalDraw(range.value, 0.75)
+        fractalDraw(range.value, 0.5)
     }
 </script>
 
@@ -137,7 +111,7 @@
     <label id="rangeLabel" for="range"></label>
     <input onchange="refreshRange()" type="range" min="1" max="12" value="7" class="slider" id="range">
     <br/>
-    <button onclick="animation()">animate</button>
+    <button onclick="animation()">Uruchom animację</button>
 </div>
 
 <script>
@@ -152,11 +126,11 @@
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        fractalDraw(range.value, 0.75); // Redraw fractal when resized
+        fractalDraw(range.value, 0.5);
     }
 
     window.addEventListener('resize', resizeCanvas);
-    resizeCanvas(); // Set initial size
+    resizeCanvas();
 
 </script>
 

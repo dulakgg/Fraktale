@@ -2,3 +2,34 @@
 #range {
 
 }
+
+canvas {
+    /* bez tego się rozwala */
+    position: fixed;
+    /* podwaja canvas */
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    scale: 0.5;
+    z-index: -1;
+}
+
+#controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+    background-color: rgb(28, 28, 28);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* zmiana kolorów przycisku animate */
+#controls button {
+    background-color: rgba(63, 63, 63, 0.3);
+    color: white;
+}
