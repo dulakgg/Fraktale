@@ -45,7 +45,7 @@ a {
     width: 75%;
 }
 
-#opis-detail {
+.opis-detail {
     padding: 10px;
     margin-left: 15%;
     margin-right: 15%;
@@ -54,6 +54,22 @@ a {
     box-shadow: 0 4px 15px #4f0a55
 }
 
+li {
+    /*border: 4px solid #4f0a55;*/
+    /*border-radius: 5px;*/
+    /*display: block;*/
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 10px;
+}
+
+li::marker {
+    color: #ffffff;
+}
+
+.buttons-container {
+    display: flex;
+}
 
 .frak1Btn,
 .frak2Btn,
@@ -108,6 +124,15 @@ a {
     animation: rgb 4s linear infinite;
 }
 
+@media (max-width: 1000px) {
+    .opis {
+        width: 100%;
+    }
+    .ramka {
+        width: 100%;
+    }
+}
+
 @media (max-width: 600px) {
     .tytul {
         font-size: 2rem;
@@ -117,12 +142,15 @@ a {
     .frak2Btn,
     .frak3Btn {
         padding: 8px 15px;
-        font-size: 0.9rem;
+        font-size: 1rem;
+    }
+
+    .opis {
+        font-size: 0.7rem
     }
 
     .ramka {
         height: 400px;
-        width: 75%;
     }
 }
 

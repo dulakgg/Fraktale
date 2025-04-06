@@ -8,12 +8,12 @@
 </head>
 <script>
     function changeTitle(text) {
-        const title = document.getElementById("opis-title");
+        const title = document.getElementById("fraktal-name");
         title.textContent = text;
     }
 
     function changeDetail(text) {
-        const detail = document.getElementById("opis-detail");
+        const detail = document.getElementById("fraktal-detail");
         detail.innerHTML = text;
     }
 
@@ -21,7 +21,10 @@
         changeIframe("fraktale/fraktal1.html");
         changeTitle("Smok Heighwaya");
         changeDetail(
-            "Fraktal odnaleziony przez Johna Heighwaya oraz Bruce’a Banksa i Williama Hartera w latach 60. XX wieku. Fraktal ten można stworzyć za pomocą wzoru : <br> z(n+1) = (1 + i) / 2 * z(n), dla pierwszej połowy <br> z(n + 1) = (1 - i) / 2 * z(n) + (1 + i) / 2, dla drugiej połowy"
+            `Fraktal odnaleziony przez Johna Heighwaya oraz Bruce’a Banksa i Williama Hartera w latach 60. XX wieku.
+            Fraktal ten można stworzyć za pomocą wzoru :
+            <br> z(n+1) = (1 + i) / 2 * z(n), dla pierwszej połowy
+            <br> z(n + 1) = (1 - i) / 2 * z(n) + (1 + i) / 2, dla drugiej połowy`
         );
     }
 
@@ -29,7 +32,10 @@
         changeIframe("fraktale/fraktal2.html");
         changeTitle("Krzywa Kocha");
         changeDetail(
-            "Opisana w 1904 roku przez szwedzkiego matematyka Nielsa Fabiana Helgavon Kocha.Aby stworzyć fraktal zaczyna się od prostej linii, dzieli się wszystkie odcinki na 3 części i środkowy zastępuje ząbkiem o ramieniu długości 1 / 3 odcinka. Krok jest powtarzany w nieskończoność."
+            `Opisana w 1904 roku przez szwedzkiego matematyka Nielsa Fabiana Helgavon Kocha.
+            Aby stworzyć fraktal zaczyna się od prostej linii,
+            dzieli się wszystkie odcinki na 3 części i środkowy zastępuje ząbkiem o ramieniu długości 1 / 3 odcinka.
+            Krok jest powtarzany w nieskończoność.`
         );
     }
 
@@ -37,8 +43,13 @@
         changeIframe("https://www.youtube.com/embed/GsQD2dhHoaU?si=OC-MdFlxQuLm6L8kautoplay=1&mute=1&loop=1");
         changeTitle("Zbiór Mandelbrota");
         changeDetail(
-            "<a href='https://dulakgg.itch.io/zbior-mandelbroda'>Link do pobrania programu generującego zbiór Mandelbrota</a><br>Został odnaleziony przez Benoît B. Mandelbrota, był on francusko i amerykańskim matematykiem, który zdefiniował samo słowo fraktal, dlatego znany jest jako ojciec geometrii fraktalnej. Zbiór Mandelbrota jest jednym z najbardziej znanych i popularnych fraktali, można go przedstawić za pomocą funkcji : <br> z(n+1) = z(n)^2 + c "
-        )
+            `<a href='https://dulakgg.itch.io/zbior-mandelbroda'>Link do pobrania programu generującego zbiór Mandelbrota</a>
+            <br>Został odnaleziony przez Benoît B. Mandelbrota, był on francusko i amerykańskim matematykiem,
+            który zdefiniował samo słowo fraktal, dlatego znany jest jako ojciec geometrii fraktalnej.
+            Zbiór Mandelbrota jest jednym z najbardziej znanych i popularnych fraktali,
+            można go przedstawić za pomocą funkcji :
+            <br> z(n+1) = z(n)^2 + c `
+        );
     }
 </script>
 <body>
@@ -52,13 +63,26 @@
     <iframe id="myIframe" class="ramka" src="fraktale/fraktal1.html"></iframe>
 </div>
 <div class="opis">
-    <h2 id="opis-title"></h2>
-    <h3 id="opis-detail"></h3>
-    <h3 id="opis-extra">
+    <h2 id="fraktal-name" class="opis-title"></h2>
+    <h3 id="fraktal-detail" class="opis-detail"></h3>
 
+</div>
+<div class="opis" id="opis">
+    <h2 class="opis-title">Czym właściwie jest fraktal?</h2>
+    <h3>
+        Potocznie znaczy to obiekt samopodobny - części są podobne do całości (np. klocek lego zbudowany z klocków lego). <br>
+        Obecnie nie ma ścisłej definicji czym jest fraktal, natomiast poniższe charakterystyki posiada większość z nich:
 
     </h3>
+    <ol>
+        <li>rozbudowana struktura</li>
+        <li>ciężka w opisie w tradycyjnej geometrii euklidesowej</li>
+        <li>samopodobny, conajmniej zbliżony do samopodobności</li>
+        <li>prosta definicja zapętlająca</li>
+        <li>ma naturalny wygląd (chociaż to zależy od osoby opisującej)</li>
+    </ol>
 </div>
+
 <script>
     fraktal1();
 

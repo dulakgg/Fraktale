@@ -72,6 +72,15 @@
         ctx.stroke();
     }
 
+    function drawScalar(value) {
+        // if (window.innerWidth <= 800) {
+        //     fractalDraw(range.value, 3);
+        // } else {
+        //     fractalDraw(range.value, 5);
+        // }
+        fractalDraw(value, window.innerWidth /250);
+    }
+
     var animating = false;
 
     function animation() {
@@ -86,7 +95,7 @@
                 const rangeLabel = document.getElementById("rangeLabel");
                 rangeLabel.innerText = i;
                 range.value = i;
-                fractalDraw(i, 5);
+                drawScalar(i);
                 i++;
                 setTimeout(step, 250);
             } // powinno wychodzić jakoś?
@@ -106,7 +115,7 @@
         const range = document.getElementById("range");
         const rangeLabel = document.getElementById("rangeLabel");
         rangeLabel.innerText = range.value;
-        fractalDraw(range.value, 5);
+        drawScalar(range.value);
     }
 </script>
 
@@ -139,7 +148,7 @@
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        fractalDraw(range.value, 5);
+        drawScalar(range.value);
     }
 
     window.addEventListener("resize", resizeCanvas);

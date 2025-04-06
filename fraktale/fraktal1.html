@@ -23,6 +23,11 @@
         let r = "r";
         let l = "l";
         let length = 7.5;
+        // aby nie wychodziło poza ekran na małych ekranach
+        if (window.innerWidth < 800) {
+            length /= 2;
+        }
+
         let angle = 90;
 
         let cycle = 1;
