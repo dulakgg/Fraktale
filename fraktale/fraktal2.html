@@ -6,29 +6,37 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <script>
-    function drawKoch(ctx, x, y, length, angle, depth) {
+    function degToRad(degrees) { // sin i cos działają z radianami tylko
+        return degrees * Math.PI / 180;
+    }
+
+    function drawKoch(ctx, x, y, length, angle, step) {
         // wydawało się łatwiejsze na początku
-        if (depth === 0) {
-            const x1 = x + length * Math.cos((angle * Math.PI) / 180);
-            const y1 = y + length * Math.sin((angle * Math.PI) / 180);
-            ctx.lineTo(x1, y1);
+        if (step === 0) { // ostatni krok to linia, zamyka fraktal
+            x += length * Math.cos(degToRad(angle));
+            y += length * Math.sin(degToRad(angle));
+            ctx.lineTo(x, y);
         } else {
-            length /= 3;
-            depth--;
+            length /= 3; // co krok o 3 mniejsze
+            step--;
             // rysuje samo siebie
-            drawKoch(ctx, x, y, length, angle, depth);
-            x += length * Math.cos((angle * Math.PI) / 180);
-            y += length * Math.sin((angle * Math.PI) / 180);
+            // 1. element - linia pozioma
+            drawKoch(ctx, x, y, length, angle, step);
+            x += length * Math.cos(degToRad(angle));
+            y += length * Math.sin(degToRad(angle));
             angle -= 60;
-            drawKoch(ctx, x, y, length, angle, depth);
-            x += length * Math.cos((angle * Math.PI) / 180);
-            y += length * Math.sin((angle * Math.PI) / 180);
+            // 2. element - ramię trójkąta
+            drawKoch(ctx, x, y, length, angle, step);
+            x += length * Math.cos(degToRad(angle));
+            y += length * Math.sin(degToRad(angle));
             angle += 120;
-            drawKoch(ctx, x, y, length, angle, depth);
-            x += length * Math.cos((angle * Math.PI) / 180);
-            y += length * Math.sin((angle * Math.PI) / 180);
+            // 3. element - ramię trójkąta
+            drawKoch(ctx, x, y, length, angle, step);
+            x += length * Math.cos(degToRad(angle));
+            y += length * Math.sin(degToRad(angle));
             angle -= 60;
-            drawKoch(ctx, x, y, length, angle, depth);
+            // 4. element - linia pozioma
+            drawKoch(ctx, x, y, length, angle, step);
         }
     }
 
@@ -74,11 +82,11 @@
         }
 
         function step() {
-            if (i <= 15) {
+            if (i <= 8) {
                 const rangeLabel = document.getElementById("rangeLabel");
                 rangeLabel.innerText = i;
                 range.value = i;
-                fractalDraw(i, 0.25);
+                fractalDraw(i, 5);
                 i++;
                 setTimeout(step, 250);
             } // powinno wychodzić jakoś?
