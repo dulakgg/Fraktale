@@ -13,6 +13,54 @@ body {
     animation: gradient 15s linear infinite;
 }
 
+.footer {
+    display: flex;
+    width: 100%;
+    background-color: #1f2937;
+    height: 60px;
+    border-radius: 16px;
+    margin: 1rem 0; /* odstęp od dołu strony */
+    overflow: hidden;
+}
+
+.gh-button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #111827;
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    transition: background-color 0.2s ease;
+    border-radius: 9999px; /* pełne zaokrąglenie – pigułka */
+    margin: 6px;
+}
+
+.gh-button:hover {
+    background-color: #374151;
+}
+
+.gh-button img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@media (max-width: 600px) {
+    .footer {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .gh-button {
+        justify-content: flex-start;
+        padding: 0.6rem 1rem;
+    }
+}
+
 a {
     text-decoration: none;
     color: #4f0a55;
@@ -106,6 +154,15 @@ li::marker {
     animation: jumper 0.5s linear infinite;
 }
 
+#disable-anim-btn {
+    align-self:normal;
+    position:fixed;
+    width: 200px;
+    color: white;
+    margin:0;
+    background-color: transparent;
+    border: none;
+}
 
 .ajfrejm {
     width: 100%;
@@ -128,6 +185,7 @@ li::marker {
     .opis {
         width: 100%;
     }
+
     .ramka {
         width: 100%;
     }

@@ -4,7 +4,9 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Fraktale</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="MyStyle.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <script>
     function changeTitle(text) {
@@ -40,7 +42,7 @@
     }
 
     function fraktal3() {
-        changeIframe("https://www.youtube.com/embed/GsQD2dhHoaU?si=OC-MdFlxQuLm6L8kautoplay=1&mute=1&loop=1");
+        changeIframe("https://www.youtube.com/embed/GsQD2dhHoaU?si=aFJ1dkmoDg0lgq6Zautoplay=1&mute=1&loop=1playlist=GsQD2dhHoaU");
         changeTitle("Zbiór Mandelbrota");
         changeDetail(
             `<a href='https://dulakgg.itch.io/zbior-mandelbroda'>Link do pobrania programu generującego zbiór Mandelbrota</a>
@@ -51,8 +53,19 @@
             <br> z(n+1) = z(n)^2 + c `
         );
     }
+
+    function disableAnimations() {
+        const style = document.createElement("style");
+        style.id = "disable-animations";
+        style.innerHTML = "* {animation: none !important}";
+        document.head.appendChild(style);
+
+        const disAnimBtn = document.getElementById("disable-anim-btn");
+        disAnimBtn.remove();
+    }
 </script>
 <body>
+<button onclick="disableAnimations()" id="disable-anim-btn">Wyłącz animacje</button>
 <h1 class="tytul">Fraktale</h1>
 <div class="buttons-container">
     <button class="frak1Btn" onclick="fraktal1()">Smok Heighwaya</button>
@@ -70,7 +83,8 @@
 <div class="opis" id="opis">
     <h2 class="opis-title">Czym właściwie jest fraktal?</h2>
     <h3>
-        Potocznie znaczy to obiekt samopodobny - części są podobne do całości (np. klocek lego zbudowany z klocków lego). <br>
+        Potocznie znaczy to obiekt samopodobny - części są podobne do całości (np. klocek lego zbudowany z klocków
+        lego). <br>
         Obecnie nie ma ścisłej definicji czym jest fraktal, natomiast poniższe charakterystyki posiada większość z nich:
 
     </h3>
@@ -82,6 +96,71 @@
         <li>ma naturalny wygląd (chociaż to zależy od osoby opisującej)</li>
     </ol>
 </div>
+<div class="footer" id="footer-buttons">
+    <!-- Contributorzy zostaną załadowani tutaj -->
+</div>
+<script>
+    const contributors = [
+        { username: "MAREKOR555", label: "Marek Orłowski" },
+        { username: "dulakgg", label: "Jakub Kettner" },
+        { username: "mucieky", label: "Jakub Dąbrowski" },
+        { username: "adamo-chm", label: "Adam Orłowski" },
+    ];
+
+    const repoLink = "https://github.com/dulakgg/Fraktale";
+    const container = document.getElementById("footer-buttons");
+
+    // Fallback avatar (GitHub default)
+    const FALLBACK_AVATAR = "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png";
+
+    async function loadGitHubUsers() {
+        if (!container) {
+            console.error("Error: container element not found");
+            return;
+        }
+
+        try {
+            const users = await Promise.all(
+                contributors.map(async (c) => {
+                    try {
+                        const res = await fetch(`https://api.github.com/users/${c.username}`);
+                        if (!res.ok) {
+                            console.warn(`Failed to fetch ${c.username}:`);
+                            return { avatar: FALLBACK_AVATAR, label: c.label };
+                        }
+                        const data = await res.json();
+                        return {
+                            avatar: data.avatar_url || FALLBACK_AVATAR,
+                            label: c.label,
+                        };
+                    } catch (err) {
+                        console.warn(`Failed to fetch ${c.username}:`, err);
+                        return { avatar: FALLBACK_AVATAR, label: c.label };
+                    }
+                })
+            );
+
+            users.forEach((user) => {
+                const link = document.createElement("a");
+                link.href = repoLink;
+                link.className = "gh-button";
+                link.target = "_blank";
+                link.innerHTML = `
+                <img src="${user.avatar}" alt="${user.label}" />
+                <span>${user.label}</span>
+            `;
+                container.appendChild(link);
+            });
+        } catch (error) {
+            console.error("Error loading GitHub user data:", error);
+        }
+    }
+
+    loadGitHubUsers();
+
+
+</script>
+
 
 <script>
     fraktal1();
